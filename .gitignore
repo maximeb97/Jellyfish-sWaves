@@ -25,3 +25,7 @@ composer.lock
 /.idea
 /.vscode
 /.vagrant
+
+# Docker
+storage/mysql
+storage/redis
