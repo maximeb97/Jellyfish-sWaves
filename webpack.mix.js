@@ -11,5 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
+// mix.copy('node_modules/bootstrap/dist/fonts/', 'public/fonts');
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+.js('resources/assets/js/bootstrap.js', 'public/js')
+.sass('resources/assets/sass/app.scss', 'public/css');
