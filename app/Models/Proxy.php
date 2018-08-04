@@ -93,4 +93,63 @@ class Proxy extends Model
         }
         return false;
     }
+
+        /**
+     * Get a proxy
+     *
+     * @param array $filters
+     * @return void
+     */
+    public static function getProxy($filters = array())
+    {
+        $query = self::queryProxies($filters);
+        return $query->inRandomOrder()->first();
+    }
+
+    /**
+     * Get proxies
+     *
+     * @param array $filters
+     * @param integer $number
+     * @return void
+     */
+    public static function getProxies($filters = array(), $number = null)
+    {
+        $query = self::queryProxies($filters);
+        if ($number != null) {
+            return $query->get($number);
+        } else {
+            return $query->get();
+        }
+    }
+
+    /**
+     * Get proxy query builder
+     *
+     * @param array $filters
+     * @return void
+     */
+    private static function queryProxies($filters)
+    {
+        if (!array_key_exists("is_working", $filters)) {
+            $filters["is_working"] = true;
+        }
+        if (!array_key_exists("ordered", $filters)) {
+            $filters["ordered"] = true;
+        }
+        $query = Proxy::where('is_working', $filters["is_working"]);
+        if (array_key_exists("type", $filters)) {
+            $query->where('type', $filters["type"]);
+        }
+        if (array_key_exists("anonymity", $filters)) {
+            $query->where('anonymity', $filters["anonymity"]);
+        }
+        if (array_key_exists("origin", $filters)) {
+            $query->where('origin', $filters["origin"]);
+        }
+        if ($filters["ordered"]) {
+            $query->orderBy('checked_at', 'DESC');
+        }
+        return $query;
+    }
 }
