@@ -18,6 +18,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body class="skin-blue">
-    @yield('content')
+    @include('layout.header')
+    @include('layout.sidebar')
+    <div class="content-wrapper">
+        @yield('content')
+    </div>
 </body>
 </html>
