@@ -3,6 +3,7 @@
 namespace App\Module\Templates;
 
 use App\Jobs\IntegrateProxy;
+use App\Models\Proxy as ProxyModel;
 
 class Proxy extends Module
 {
